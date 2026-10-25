@@ -109,41 +109,63 @@ firmware_service/
 
 ---
 
-## Setup & Flash
+## Build & Flash
 
-### Dependencies (Arduino IDE Library Manager)
+### 1. Arduino IDE dependencies
+
+Install via **Tools → Manage Libraries**:
 
 | Library | Author | Version |
 |---------|--------|---------|
 | WebSockets | Markus Sattler | Latest |
 | ArduinoJson | Benoit Blanchon | v6 |
 
-### Board Settings
+Install ESP32 board support via **File → Preferences → Additional Boards Manager URLs**:
+```
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+```
+Then **Tools → Board Manager** → search `esp32` → install **esp32 by Espressif Systems**.
+
+### 2. Board settings
 
 | Setting | Value |
 |---------|-------|
 | Board | AI Thinker ESP32-CAM |
 | Partition Scheme | Huge APP (3MB No OTA) |
 | Upload Speed | 115200 |
+| Flash Mode | QIO |
 
-### Configuration (edit `camera_config.h`)
+### 3. Configure credentials
+
+Edit `wildlife_cam/camera_config.h` — the four fields you must set:
 
 ```cpp
-#define WIFI_SSID     "your_network"
-#define WIFI_PASSWORD "your_password"
-#define WS_HOST       "your-ec2-ip"   // e.g. 13.235.66.226
-#define WS_PORT       8000
-#define API_KEY       "your-api-key"
+#define WIFI_SSID         "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD     "YOUR_WIFI_PASSWORD"
+#define WS_HOST           "YOUR_EC2_PUBLIC_IP"  // inference service IP
+#define API_KEY           "YOUR_API_KEY"         // must match .env API_KEY
 ```
 
-### Flash Steps
+> All other values (pin numbers, timing constants, task stacks) are preconfigured for the AI-Thinker ESP32-CAM. Do not change them unless you know what you are doing.
 
-1. Attach the ESP32-CAM-MB programming shield
+### 4. Flash
+
+1. Attach the ESP32-CAM-MB programming shield via USB
 2. Open `wildlife_cam/wildlife_cam.ino` in Arduino IDE
-3. Set board + partition scheme as above
-4. Upload
-5. Remove the MB shield for field deployment (power from battery pack)
-6. Follow the **sequential bring-up** steps in [`docs/hardware_architecture.md`](docs/hardware_architecture.md)
+3. Select board + partition scheme as above
+4. Click **Upload**
+5. Once flashed, remove the MB shield — power from the 18650 battery pack for field deployment
+
+### 5. Verify boot
+
+Open **Tools → Serial Monitor** at 115200 baud. You should see:
+```
+WiFi connecting...
+WiFi connected. IP: 192.168.x.x
+WebSocket connected to ws://YOUR_EC2_IP:8000/ws/esp32-cam-01
+```
+
+Or watch the onboard LED — 5 fast blinks = WiFi connected, then 1 slow blink every 3s = IDLE, waiting for PIR.
 
 ---
 

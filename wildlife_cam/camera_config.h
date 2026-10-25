@@ -32,13 +32,15 @@
 #define DFPLAYER_TX_PIN   17   // ESP32 TX → DFPlayer RX
 #define DFPLAYER_RX_PIN   16   // ESP32 RX → DFPlayer TX
 
-// ─── Network ──────────────────────────────────────────────────────────────────
-#define WIFI_SSID         "Redmi 12 5G"
-#define WIFI_PASSWORD     ""
-#define WS_HOST           "13.235.66.226"
+// ─── Network — fill these in before flashing ─────────────────────────────────
+// Copy this section into your own config and set your values.
+// Never commit real credentials to version control.
+#define WIFI_SSID         "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD     "YOUR_WIFI_PASSWORD"
+#define WS_HOST           "YOUR_EC2_PUBLIC_IP"   // e.g. "13.235.66.226"
 #define WS_PORT           8000
 #define WS_PATH           "/ws/esp32-cam-01"
-#define API_KEY           "08af8f9128cdb5eb5bb045f19a41a558868be2ba0b0026c9cb5734406601b117"
+#define API_KEY           "YOUR_API_KEY"          // must match API_KEY in inference_service/.env
 #define CAMERA_ID         "esp32-cam-01"
 
 // ─── Timing ───────────────────────────────────────────────────────────────────
