@@ -142,7 +142,7 @@ Edit `wildlife_cam/camera_config.h` — the four fields you must set:
 ```cpp
 #define WIFI_SSID         "YOUR_WIFI_SSID"
 #define WIFI_PASSWORD     "YOUR_WIFI_PASSWORD"
-#define WS_HOST           "YOUR_EC2_PUBLIC_IP"  // inference service IP
+#define WS_HOST           "YOUR_EC2_PUBLIC_IP"  // EC2 public IP or domain (e.g. lightbox-singh-forward-plays.trycloudflare.com)
 #define API_KEY           "YOUR_API_KEY"         // must match .env API_KEY
 ```
 
