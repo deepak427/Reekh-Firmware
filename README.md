@@ -142,7 +142,7 @@ Edit `wildlife_cam/camera_config.h` — the four fields you must set:
 ```cpp
 #define WIFI_SSID         "YOUR_WIFI_SSID"
 #define WIFI_PASSWORD     "YOUR_WIFI_PASSWORD"
-#define WS_HOST           "YOUR_EC2_PUBLIC_IP"  // EC2 public IP or domain (e.g. lightbox-singh-forward-plays.trycloudflare.com)
+#define WS_HOST           "3.108.11.185"        // reekh.deepaksingh.site or EC2 IP (3.108.11.185)
 #define API_KEY           "YOUR_API_KEY"         // must match .env API_KEY
 ```
 
@@ -162,7 +162,7 @@ Open **Tools → Serial Monitor** at 115200 baud. You should see:
 ```
 WiFi connecting...
 WiFi connected. IP: 192.168.x.x
-WebSocket connected to ws://YOUR_EC2_IP:8000/ws/esp32-cam-01
+WebSocket connected to ws://3.108.11.185:8000/ws/esp32-cam-01
 ```
 
 Or watch the onboard LED — 5 fast blinks = WiFi connected, then 1 slow blink every 3s = IDLE, waiting for PIR.

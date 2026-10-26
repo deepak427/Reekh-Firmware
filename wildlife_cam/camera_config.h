@@ -37,7 +37,7 @@
 // Never commit real credentials to version control.
 #define WIFI_SSID         "YOUR_WIFI_SSID"
 #define WIFI_PASSWORD     "YOUR_WIFI_PASSWORD"
-#define WS_HOST           "YOUR_EC2_PUBLIC_IP"   // e.g. "13.235.66.226"
+#define WS_HOST           "3.108.11.185"         // reekh.deepaksingh.site (or EC2 IP: 3.108.11.185)
 #define WS_PORT           8000
 #define WS_PATH           "/ws/esp32-cam-01"
 #define API_KEY           "YOUR_API_KEY"          // must match API_KEY in inference_service/.env
